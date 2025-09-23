@@ -41,9 +41,14 @@ def generate_launch_description():
              )
 
     # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
+    # NOTE: Spawn pose is hardcoded for the center of a sample turtlebot map. Remove to default to a 0,0,0... pose
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-topic', 'robot_description',
-                                   '-entity', 'my_bot'],
+                                   '-entity', 'my_bot',
+                                   '-x', '2.0',
+                                   '-y', '0.0',
+                                   '-z', '0.05',
+                                   '-Y', '0.0'],
                         output='screen')
 
 
