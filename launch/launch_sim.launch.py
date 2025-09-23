@@ -25,10 +25,19 @@ def generate_launch_description():
                 )]), launch_arguments={'use_sim_time': 'true'}.items()
     )
 
+#### START World Add
+    world = os.path.join(
+        get_package_share_directory('turtlebot3_gazebo'),
+        'worlds',
+        'turtlebot3_world.world'
+    )
+#### END World Add
+    
     # Include the Gazebo launch file, provided by the gazebo_ros package
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
+                launch_arguments={'world': world}.items()
              )
 
     # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
